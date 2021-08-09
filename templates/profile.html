@@ -1,0 +1,27 @@
+﻿<!-- Page for viewing and updating a certain existing user entry -->
+{% from "_render_field_update.html" import render_field_update %}
+﻿{% extends "_layout.html" %}
+{% block title %}Profile{% endblock %}
+{% block content %}
+
+<div class="linkbox container-fluid">
+    <h2>Welcome, {{ session["firstName"] }}. You are currently signed in with {{ session["role"] }} permissions. View and edit your details here:</h2>
+</div><br />
+
+<div class="linkbox">
+    <form method="post" enctype="multipart/form-data" novalidate="novalidate" action="/profileUpdate">
+        <input type="hidden" name="userID" value="{{ this_user.userID }}" /><br>
+        {{ form.csrf_token }}
+        {{ render_field_update(form.email, this_user.email) }}
+        {{ render_field_update(form.firstName, this_user.firstName) }}
+        {{ render_field_update(form.lastName, this_user.lastName) }}
+        {{ render_field_update(form.userName, this_user.userName) }}
+        {{ render_field_update(form.yearLevel, this_user.yearLevel) }}
+        {{ render_field_update(form.tutorGroup, this_user.tutorGroup) }}
+        <br /><h3>Want to change your password? Enter your new password here:</h3>
+        {{ render_field_update(form.password, this_user.passWord) }}
+        <input type="submit" value="Update" />
+    </form>
+</div>
+
+{% endblock %}

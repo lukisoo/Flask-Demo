@@ -1,0 +1,9 @@
+﻿<!-- Macro for fields on updating a form -->
+{% macro render_field_update(field, currentValue) %}
+{{ field.label }}
+{{ field(value=(currentValue)) }}
+<br>
+   {% for error in field.errors %}
+<li>{{ error }}</li>
+   {% endfor %}
+{% endmacro %}

@@ -1,0 +1,73 @@
+﻿<!-- Table which displays the database -->
+{% extends "_layout.html" %}
+{% block title %}Resources Database{% endblock %}
+{% block content %}
+
+<div class="linkbox container-fluid">
+    <br /><h2>Manage and edit all resources here:</h2><br />
+</div>
+<br />
+
+<div class="linkbox container-fluid">
+
+    <table class="table table-hover" border="1">
+        <tr>
+            <th>ID</th>
+            <th>Photo</th>
+            <th>Type</th>
+            <th>Brand</th>
+            <th>Model</th>
+            <th>Purchase Date</th>
+            <th>Purchase Price</th>
+            <th>Condition</th>
+            <th>Lens Attached</th>
+            <th>Extra Notes</th>
+            <th>Update Entry</th>
+            <th>Delete Entry</th>
+        </tr>
+        {% for resource in resources %}
+        <tr>
+            <td> {{ resource.resourceID }} </td>
+            {% if resource.resourceImage == None %}
+            <td><img src="{{ url_for('static', filename='images/' + 'blank.png') }}" style="width:8vh"></td>
+            {% else %}
+            <td><img src="{{ url_for('static', filename='images/' + resource.resourceImage.decode('utf-8')) }}" style="width:8vh"></td>
+            {% endif %}
+            <td> {{ resource.resourceType }} </td>
+            <td> {{ resource.resourceBrand }} </td>
+            <td> {{ resource.resourceModel }} </td>
+            <td> {{ resource.purchaseDate }} </td>
+            <td> {{ resource.purchasePrice }} </td>
+            <td> {{ resource.resourceCondition }} </td>
+            <td> {{ resource.lensAttached }} </td>
+            <td> {{ resource.extraNotes }} </td>
+            <td><button type="button" onclick="location.href='/update?resourceID={{ resource.resourceID }}';" style="cursor: pointer;">Update</button></td>
+            <td><button type="button" onclick="document.getElementById({{ resource.resourceID }}).style.display='block'">Delete</button></td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <td><button type="button" onclick="location.href='/create';" style="cursor: pointer;">Add a resource</button></td>
+
+</div>
+
+{% for resource in resources %}
+
+<div id="{{ resource.resourceID }}" class="modal">
+    <span onclick="document.getElementById({{ resource.resourceID }}).style.display='none'" class="close" title="Close Modal">×</span>
+    <form class="modal-content" action="/action_page.php">
+        <div class="container">
+            <h1>Delete Entry</h1>
+            <p>Are you sure you want to delete entry #{{ resource.resourceID }})?</p>
+            <div class="clearfix">
+                <button type="button" onclick="document.getElementById({{ resource.resourceID }}).style.display='none'" class="cancelbtn"><a href="#">Cancel</a></button>
+                <button type="button" onclick="location.href='/deleteresource?resourceID={{ resource.resourceID }}'.style.display='none'" class="deletebtn"><a href="/deleteresource?resourceID={{ resource.resourceID }}">Delete</a></button>
+            </div>
+        </div>
+    </form>
+</div>
+
+{% endfor %}
+
+
+{% endblock %}

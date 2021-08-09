@@ -1,0 +1,25 @@
+﻿<!-- Page for creating a new entry -->
+{% from "_render_field.html" import render_field %}
+{% extends "_layout.html" %}
+{% block title %}Create Resource Entry{% endblock %}
+{% block content %}
+
+<div class="linkbox container-fluid">
+    <h1>Add a new resource to the database here:</h1>
+
+    <form method="post" action="{{ url_for('create') }}" enctype="multipart/form-data" novalidate="novalidate">
+        <label for="resourceImage">Photo:</label>
+        <input name="resourceImage" type="file" accept="image/*" capture><br>
+        {{ form.csrf_token }}
+        {{ render_field(form.resourceType) }}
+        {{ render_field(form.resourceBrand) }}
+        {{ render_field(form.resourceModel) }}
+        {{ render_field(form.purchaseDate) }}
+        {{ render_field(form.purchasePrice) }}
+        {{ render_field(form.resourceCondition) }}
+        {{ render_field(form.lensAttached) }}
+        {{ render_field(form.extraNotes) }}
+        <input type="submit" />
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,43 @@
+﻿<!-- Home page for the site -->
+{% extends "_layout.html" %}
+{% block title %}Home Page{% endblock %}
+{% block content %}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="linkbox morepadding">
+                <h2>
+                    The arts are a powerful way to express ideas that often can't be expressed through voice, and allows students to find an alternative way to communicate themselves.
+                    Photography is part of this, and Pakuranga College enriches student experience by providing the opportunity for them to pursue a developed understanding of photography,
+                    in and out of class.
+                </h2>
+            </div>
+        </div><br />
+        <div onclick="location.href='/database'" class="linkbox row">
+            <div class="morepadding col-md-5">
+                <h2>View what resources (cameras and other tools) the art department has available. Log in to borrow and manage resources.</h2>
+            </div>
+            <div class="col-md-7">
+                <img src="{{url_for('static', filename='images/database.jpg')}}" style="border-radius:2vw" width="100%" height="100%" alt="Database">
+            </div>
+        </div><br />
+
+        <div onclick="location.href='/gallery';" class="linkbox row">
+            <div class="col-md-7">
+                <img src="{{url_for('static', filename='images/photoport.jpg')}}" style="border-radius:2vw" width="100%" height="100%" alt="Photo Gallery">
+            </div>
+            <div class="morepadding col-md-5">
+                <br><br>
+                <h2>View a gallery of pictures taken by students.</h2>
+            </div>
+        </div><br />
+
+        <div class="row">
+            <div class="linkbox morepadding">
+                <h2>
+                    Please log in or register in order to access more controls and functionality.
+                </h2>
+            </div>
+        </div>
+
+    </div>
+{% endblock %}

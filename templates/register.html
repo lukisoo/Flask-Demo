@@ -1,0 +1,29 @@
+﻿<!-- Page for creating a new entry -->
+{% from "_render_field.html" import render_field %}
+{% extends "_layout.html" %}
+{% block title %}Register an Account{% endblock %}
+{% block content %}
+
+<div class="linkbox container=fluid">
+
+    <h1>Register an account here:</h1>
+
+    <img src="{{url_for('static', filename='images/register.png')}}" width=25%" alt="Register"><br /><br />
+
+    <form method="post" action="{{ url_for('register') }}" enctype="multipart/form-data" novalidate="novalidate">
+        {{ form.csrf_token }}
+        {{ render_field(form.userName) }}
+        {{ render_field(form.password) }}
+        {{ render_field(form.confirm) }}
+        {{ render_field(form.email) }}
+        {{ render_field(form.firstName) }}
+        {{ render_field(form.lastName) }}
+        {{ render_field(form.yearLevel) }}
+        {{ render_field(form.tutorGroup) }}
+        {{ render_field(form.role) }}
+        <input type="submit" />
+    </form>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,77 @@
+﻿<!-- What is currently being borrowed, and by who. -->
+{% extends "_layout.html" %}
+{% block title %}Borrow Resources{% endblock %}
+{% block content %}
+
+<!-- What resources are currently available to be borrowed. -->
+<div class="linkbox container-fluid">
+    <div class="container-fluid">
+        <h2>The resources listed below are currently available to be borrowed:</h2>
+    </div>
+
+    <table class="table table-hover" border="1">
+        <tr>
+            <th scope="col">Issue ID</th>
+            <th scope="col">Resource ID</th>
+            <th scope="col">Resource Model</th>
+            <th scope="col">Currently being borrowed by:</th>
+            <th scope="col">Issue this resource to:</th>
+        </tr>
+        {% for issue in issues %}
+
+        {% if issue.firstName == None %}
+        <tr>
+            <td scope="row"> {{ issue.issueID }} </td>
+            <td scope="row"> {{ issue.resourceID }} </td>
+            <td scope="row"> {{ issue.resourceModel }} </td>
+            <td scope="row"> {{ issue.firstName }} </td>
+            <td scope="row">
+                <form action="/performIssue" method="post">
+                    <input type="hidden" name="resourceID" value="{{ issue.resourceID }}" /><br>
+                    <select name="selectuser" id="selectuser">
+                        {% for user in users %}
+                        <option value="{{ user.userID }}">{{ user.firstName }} ({{ user.userName }})</option>
+                        {% endfor %}
+                    </select>
+                    <input class="button" type="submit" value="Confirm Issue">
+                </form>
+
+            </td>
+            <!--<td scope="row"><button type="button" onclick="location.href='/confirmissue?resourceID={{ issue.resourceID }}?userID=3';" style="cursor: pointer;">Confirm Issue</button></td>-->
+        </tr>
+        {% else %}
+        {% endif %}
+
+        {% endfor %}
+    </table>
+</div><br />
+
+<div class="linkbox container-fluid">
+    <div class="container-fluid">
+        <h2>These resources are currently being borrowed:</h2>
+    </div>
+
+    <table class="table table-hover" border="1">
+        <tr>
+            <th scope="col">Issue ID</th>
+            <th scope="col">Resource Model</th>
+            <th scope="col">Currently being borrowed by:</th>
+            <th scope="col">Return this resource for user:</th>
+        </tr>
+        {% for issue in issues %}
+        {% if issue.firstName != None %}
+        <tr>
+            <td scope="row"> {{ issue.issueID }} </td>
+            <td scope="row"> {{ issue.resourceModel }} </td>
+            <td scope="row"> {{ issue.firstName }} </td>
+            <td scope="row"><button type="button" onclick="location.href='/returnissue?resourceID={{ issue.resourceID }}';" style="cursor: pointer;">Return</button></td>
+        </tr>
+        {% else %}
+        {% endif %}
+        {% endfor %}
+    </table>
+</div>
+
+
+
+{% endblock %}

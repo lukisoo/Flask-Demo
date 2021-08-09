@@ -1,0 +1,45 @@
+﻿<!-- Table which displays the database -->
+{% extends "_layout.html" %}
+{% block title %}Resources Database{% endblock %}
+{% block content %}
+
+<div class="linkbox container-fluid">
+    <br /><h2>Below displays all the resources which the art department owns. Make sure you are logged in to borrow any resources.</h2><br />
+</div><br />
+
+<table class="linkbox table table-hover" border="1">
+    <tr>
+        <th>ID</th>
+        <th>Photo</th>
+        <th>Type</th>
+        <th>Brand</th>
+        <th>Model</th>
+        <th>Purchase Date</th>
+        <th>Purchase Price</th>
+        <th>Condition</th>
+        <th>Lens Attached</th>
+        <th>Extra Notes</th>
+    </tr>
+    {% for resource in resources %}
+    <tr>
+        <td> {{ resource.resourceID }} </td>
+        {% if resource.resourceImage == None %}
+        <td><img src="{{ url_for('static', filename='images/' + 'blank.png') }}" style="width:8vh"></td>
+        {% else %}
+        <td><img src="{{ url_for('static', filename='images/' + resource.resourceImage.decode('utf-8')) }}" style="width:8vh"></td>
+        {% endif %}
+        <td> {{ resource.resourceType }} </td>
+        <td> {{ resource.resourceBrand }} </td>
+        <td> {{ resource.resourceModel }} </td>
+        <td> {{ resource.purchaseDate }} </td>
+        <td> {{ resource.purchasePrice }} </td>
+        <td> {{ resource.resourceCondition }} </td>
+        <td> {{ resource.lensAttached }} </td>
+        <td> {{ resource.extraNotes }} </td>
+    </tr>
+    {% endfor %}
+</table>
+
+
+
+{% endblock %}

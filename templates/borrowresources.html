@@ -1,0 +1,81 @@
+﻿<!-- What the user is currently borrowing, and what is still available to be borrowed. -->
+{% extends "_layout.html" %}
+{% block title %}Borrow Resources{% endblock %}
+{% block content %}
+
+<!-- What the user is currently borrowing. -->
+<div class="linkbox container-fluid">
+    <h2>Welcome, {{ session["firstName"] }}. You are currently borrowing the following resources:</h2>
+</div><br />
+
+<table class="linkbox table table-hover" border="1">
+    <tr>
+        <th scope="col">Issue ID</th>
+        <th scope="col">Resource Model</th>
+        <th scope="col">Currently being borrowed by:</th>
+        <th scope="col">Return this resource:</th>
+    </tr>
+    {% for issue in issues %}
+
+    {% if issue.firstName == session["firstName"] %}
+    <tr>
+        <td scope="row"> {{ issue.issueID }} </td>
+        <td scope="row"> {{ issue.resourceModel }} </td>
+        <td scope="row"> {{ issue.firstName }} </td>
+        <td scope="row"><button type="button" onclick="location.href='/returnissue?resourceID={{ issue.resourceID }}';" style="cursor: pointer;">Return</button></td>
+    </tr>
+    {% else %}
+    {% endif %}
+
+    {% endfor %}
+</table>
+
+
+<!-- What resources are currently available to be borrowed. -->
+<div class="linkbox container-fluid">
+    <h2>The resources listed below are currently available to be borrowed:</h2>
+</div><br />
+
+<table class="linkbox table table-hover" border="1">
+    <tr>
+        <th scope="col">Issue ID</th>
+        <th scope="col">Resource Model</th>
+        <th scope="col">Currently being borrowed by:</th>
+        <th scope="col">Borrow this resource:</th>
+    </tr>
+    {% for issue in issues %}
+
+    {% if issue.firstName == None %}
+    <tr>
+        <td scope="row"> {{ issue.issueID }} </td>
+        <td scope="row"> {{ issue.resourceModel }} </td>
+        <td scope="row"> {{ issue.firstName }} </td>
+        <td scope="row"><button type="button" onclick="location.href='/confirmborrow?resourceID={{ issue.resourceID }}';" style="cursor: pointer;">Borrow</button></td>
+    </tr>
+    {% else %}
+    {% endif %}
+
+    {% endfor %}
+</table>
+
+{% for issue in issues %}
+
+<div id="{{ issue.issueID }}" class="modal">
+    <span onclick="document.getElementById({{ issue.issueID }}).style.display='none'" class="close" title="Close Modal">×</span>
+    <form class="modal-content" action="/action_page.php">
+        <div class="container">
+            <h1>Delete Entry</h1>
+            <p>Are you sure you want to delete entry #{{ issue.issueID }})?</p>
+            <div class="clearfix">
+                <button type="button" onclick="document.getElementById({{ issue.issueID }}).style.display='none'" class="cancelbtn">Cancel</button>
+                <button type="button" onclick="location.href='/delete?resourceID={{ issue.resourceID }}'.style.display='none'" class="deletebtn"><a href="/delete?resourceID={{ issue.resourceID }}">delete</a></button>
+            </div>
+        </div>
+    </form>
+</div>
+
+{% endfor %}
+
+{% endblock %}
+
+<td scope="row"><button type="button" onclick="location.href='/confirmborrow?resourceID={{ issue.resourceID }}';" style="cursor: pointer;">Borrow</button></td>

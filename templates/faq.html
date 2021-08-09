@@ -1,0 +1,162 @@
+﻿﻿{% extends "_layout.html" %}
+{% block title %}Log in{% endblock %}
+{% block content %}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-5">
+                <h1>Find frequently answers questions answered here:</h1>
+            </div>
+            <div onclick="location.href='/...'" class="col-md-7 linkbox">
+                <img src="/static/images/database.jpg" width="100%" alt="Database">
+                <div class="container linkboxtext">
+                    <h2><br><br><br>Can I take out more than one camera at once?</h2>
+                </div>
+            </div>
+        </div>
+        <div onclick="location.href='/usersdatabase';" class="row">
+            <div class="col-md-8">
+                <img src=# width="100%" height="100%" alt="Information">
+            </div>
+            <div class="col-md-4">
+                <br><br>
+                <p>Nothing to see here, for now.</p>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+
+
+
+
+    <ul class="nav nav-pills">
+        <li class="nav-item">
+            <a class="nav-link" href="/">Home</a>
+        </li>
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Our Art Department</a>
+            <div class="dropdown-menu">
+                <a class="dropdown-item" href="/database">All Resources</a>
+                <a class="dropdown-item" href="/database">Student Gallery</a>
+                <a class="dropdown-item" href="/database">Upcoming Events</a>
+            </div>
+        </li>
+
+        {% if session["roleID"] == "Admin" %}
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Admin Controls</a>
+            <div class="dropdown-menu">
+                <a class="dropdown-item" href="/database">Manage resources</a>
+                <a class="dropdown-item" href="/database">Borrow a resource</a>
+                <a class="dropdown-item" href="/database">Issue resource</a>
+                <a class="dropdown-item" href="/database">User management</a>
+            </div>
+        </li>
+
+        {% if session["roleID"] == "Teacher" %}
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Teacher Controls</a>
+            <div class="dropdown-menu">
+                <a class="dropdown-item" href="/database">Manage resources</a>
+                <a class="dropdown-item" href="/database">Borrow a resource</a>
+                <a class="dropdown-item" href="/database">Issue resource</a>
+            </div>
+        </li>
+
+        {% if session["roleID"] == "Student" %}
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Student Controls</a>
+            <div class="dropdown-menu">
+                <a class="dropdown-item" href="/database">View resources</a>
+                <a class="dropdown-item" href="/database">Borrow a resource</a>
+            </div>
+        </li>
+
+        {% else %}
+        <li class="nav-item">
+            <a class="nav-link" href="#">Controls</a>
+        </li>
+        {% endif %}
+
+        <li class="nav-item">
+            <a class="nav-link" href="/">FAQ and Contact</a>
+        </li>
+
+        {% if session["loggedIn"] == True %}
+        <a class="nav-link" href="/logout">Logout</a>
+        {% else %}
+        <a class="nav-link" href="/login">Login</a>
+        <a class="nav-link" href="/register">Register</a>
+        {% endif %}
+
+    </ul>
+
+
+
+
+
+
+
+        <a class="navbar-brand" href="">
+            <img src="{{url_for('static', filename='images/pakpegasuslogo.png')}}" alt="Pakuranga College" style="width:40px;">
+        </a>
+
+        <ul class="nav nav-pills"
+        <li class="nav-item">
+        <a class="nav-link" href="/">Home</a>
+        </li>
+        <li class="nav-item">
+        <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">View Databases</a>
+        <div class="dropdown-menu">
+        <a class="dropdown-item" href="/database">Cameras Database</a>
+        </div>
+        </li>
+
+        {% if session["roleID"] == "Admin" %}
+        <li class="nav-item">
+        <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">Admin controls</a>
+        <div class="dropdown-menu">
+        <a class="dropdown-item" href="/studentborrow">Borrow Resources</a>
+        <a class="dropdown-item" href="/issueresource">Issue resources</a>
+        <a class="dropdown-item" href="/usersdatabase">Users Database</a>
+        </div>
+        </li>
+        {% elif session["roleID"] == "Teacher" %}
+        <li class="nav-item">
+        <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">Teacher controls</a>
+        <div class="dropdown-menu">
+        <a class="dropdown-item" href="/studentborrow">Borrow Resources</a>
+        <a class="dropdown-item" href="/issueresource">Issue resources</a>
+        <a class="dropdown-item" href="/usersdatabase">Users Database</a>
+        </div>
+        </li>
+        {% elif session["roleID"] == "Student" %}
+        <li class="nav-item">
+        <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+        Student controls
+        </a>
+        <div class="dropdown-menu">
+        <a class="dropdown-item" href="/studentborrow">Borrow Resources</a>
+        </div>
+        </li>
+        {% else %}
+        <li class="nav-item">
+        <a class="nav-link" href="#">Controls</a>
+        </li>
+        {% endif %}
+        <li class="nav-item">
+        <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+        Help
+        </a>
+        <div class="dropdown-menu">
+        <a class="dropdown-item" href="/#">FAQ</a>
+        <a class="dropdown-item" href="/#">Contact us</a>
+        </div>
+        </li>
+
+        {% if session["loggedIn"] == True %}
+        <a class="nav-link" href="/logout">Logout</a>
+        {% else %}
+        <a class="nav-link" href="/login">Login</a>
+        <a class="nav-link" href="/register">Register</a>
+        {% endif %}

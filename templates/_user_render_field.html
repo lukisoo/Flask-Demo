@@ -1,0 +1,9 @@
+﻿<!-- Macro for fields on creating a form -->
+{% macro render_field(field) %}
+{{ field.label }}
+{{ field(**kwargs)|safe }}
+<br>
+   {% for error in field.errors %}
+<li>{{ error }}</li>
+   {% endfor %}
+{% endmacro %}

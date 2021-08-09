@@ -1,0 +1,24 @@
+﻿<!-- Page for creating a new entry -->
+{% from "_render_field.html" import render_field %}
+{% extends "_layout.html" %}
+{% block title %}Confirm which resource you would like to borrow{% endblock %}
+{% block content %}
+
+    <div class="linkbox container-fluid">
+
+        <h1>Are you sure you want to borrow this resource?</h1>
+
+        <h2>Resource #{{ this_resource.resourceID }}</h2><br />
+
+        {{ this_resource.resourceModel }}<br />
+        {% if this_resource.resourceImage == None %}
+        <td><img src="{{ url_for('static', filename='images/' + 'blank.png') }}" style="width:8vh"></td>
+        {% else %}
+        <td><img src="{{ url_for('static', filename='images/' + this_resource.resourceImage.decode('utf-8')) }}" style="width:8vh"></td>
+        {% endif %}
+
+        <button type="button" onclick="location.href='/performBorrow?resourceID={{ this_resource.resourceID }}';" style="cursor: pointer;">Borrow</button>
+
+        {% endblock %}
+
+    </div>

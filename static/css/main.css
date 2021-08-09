@@ -1,0 +1,222 @@
+﻿body {
+    margin: 0;
+    padding: 0;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: black;
+    background-image: url('/static/images/background6.png');
+    background-repeat:no-repeat;
+    background-color: white;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+h1 {
+ font-size: 2.75vw;
+ font-family: 'Tinos', serif;
+}
+
+h2 {
+ font-size: 1.65vw;
+ font-family: 'Crimson Text', serif;
+}
+
+h3 {
+ font-size: 1.5vw;
+ font-family: 'Bitter', serif;
+}
+
+h5 {
+ font-size: 1vw;
+ font-family: 'Roboto Slab', serif;
+}
+
+p { /* ai info and link info */
+ font-size: 1vw;
+ font-family: 'Fira Sans', sans-serif;
+}
+
+a {
+ font-size: 2vw;
+ font-family: 'Fira Sans', sans-serif;
+ color: black;
+ align: center;
+}
+
+a:hover {
+ color: silver;
+}
+
+.center {
+ display: block;
+ margin-left: auto;
+ margin-right: auto;
+ width: 50%;
+}
+
+.jumbotron {
+ background-image: url('/static/images/editedjumbotron.jpeg');
+ color: white;
+ background-position: center;
+ background-size: contain;
+ background-repeat: no-repeat;
+ background-color: black;
+ height: 60vh;
+ margin: 0px;
+}
+
+@media screen and (max-width: 500px) {
+    .jumbotron {
+        background-image: url('/static/images/editedjumbotron.jpeg');
+        color: white;
+        background-position: center;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-color: black;
+        height: 35vh;
+        margin: 0px;
+    }
+}
+
+.navbar {
+    background-color: black;
+    z-index: 1;
+    border-bottom-style: double;
+    border-bottom-color: white;
+}
+
+.nav-link {
+    color:white;
+    font-size: 1.3vw;
+}
+
+.dropdown-item {
+    color: black;
+    font-size: 1.3vw;
+}
+
+.nav-link:hover {
+ background-color: rgba(10, 141, 255, 0.4);
+}
+
+.maincontent {
+ padding: 2.5vw;
+}
+
+.linkbox {
+    position: relative;
+    border-radius: 0.95vw;
+    background-color: rgba(255, 255, 255, 0.92);
+    padding: 1vw;
+}
+
+.linkboxtext {
+ position: absolute;
+ background-image: linear-gradient(rgba(255, 255, 255, 0), black, black);
+ width: 100%;
+ bottom: 0px;
+ color:white;
+}
+
+.morepadding {
+    padding: 6vw;
+}
+
+/* Set a style for all buttons */
+button {
+ background-color: #4CAF50;
+ color: white;
+ padding: 14px 20px;
+ margin: 8px 0;
+ border: none;
+ cursor: pointer;
+ width: 100%;
+ opacity: 0.9;
+}
+
+button:hover {
+ opacity:1;
+ color:lightgray;
+}
+
+/* Float cancel and delete buttons and add an equal width */
+.cancelbtn, .deletebtn {
+ float: left;
+ width: 50%;
+}
+
+/* Add a color to the cancel button */
+.cancelbtn {
+ background-color: #ccc;
+ color: black;
+}
+
+/* Add a color to the delete button */
+.deletebtn {
+ background-color: #f44336;
+}
+
+/* Add padding and center-align text to the container */
+.container {
+ padding: 16px;
+ text-align: center;
+}
+
+/* The Modal (background) */
+.modal {
+ display: none; /* Hidden by default */
+ position: fixed; /* Stay in place */
+ z-index: 1; /* Sit on top */
+ left: 0;
+ top: 0;
+ width: 100%; /* Full width */
+ height: 100%; /* Full height */
+ overflow: auto; /* Enable scroll if needed */
+ background-color: hsla(0, 0%, 73%, 0.65);
+ padding-top: 50px;
+}
+
+/* Modal Content/Box */
+.modal-content {
+ background-color: #fefefe;
+ margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+ border: 1px solid #888;
+ width: 80%; /* Could be more or less, depending on screen size */
+}
+
+/* Style the horizontal ruler */
+hr {
+ border: 1px solid #f1f1f1;
+ margin-bottom: 25px;
+}
+
+/* The Modal Close Button (x) */
+.close {
+ position: absolute;
+ right: 35px;
+ top: 15px;
+ font-size: 40px;
+ font-weight: bold;
+ color: #f1f1f1;
+}
+
+.close:hover,
+.close:focus {
+ color: #f44336;
+ cursor: pointer;
+}
+
+/* Clear floats */
+.clearfix::after {
+ content: "";
+ clear: both;
+ display: table;
+}
+
+/* Change styles for cancel button and delete button on extra small screens */
+@media screen and (max-width: 300px) {
+ .cancelbtn, .deletebtn {
+   width: 100%;
+ }
+}
+
+

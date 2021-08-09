@@ -1,0 +1,23 @@
+﻿﻿{% extends "_layout.html" %}
+{% block title %}Log in{% endblock %}
+{% block content %}
+    <div class="linkbox container-fluid"><br /><br />
+        <h2>Log in:</h2>
+        <img src="{{url_for('static', filename='images/persontakingphoto.png')}}" alt="persontakingphoto" class="center" style="width:10vw; max-width:520px" />
+        <form method="post" class="was-validated center" style="width:40vw">
+            <div class="form-group">
+                <label for="userName">Username:</label>
+                <input type="text" class="form-control" id="userName" placeholder="Enter username" name="userName" required>
+                <div class="invalid-feedback">Please fill out your username.</div>
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" class="form-control" id="password" placeholder="Enter password" name="password" required>
+                <div class="invalid-feedback">Please fill out your password.</div>
+            </div>
+            <a href="/resetpassword"><p>Forgot Password? Reset your password here.</p></a>
+            <a href="/register"><p>Don't have an account? Register Here.</p></a>
+            <button type="submit" action="/passwordresetsend" class="btn btn-primary">Log In</button>
+        </form>
+    </div>
+{% endblock %}

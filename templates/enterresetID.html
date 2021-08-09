@@ -1,0 +1,27 @@
+﻿﻿{% extends "_layout.html" %}
+{% block title %}Log in{% endblock %}
+{% block content %}
+    <div class="linkbox container-fluid">
+    <br /><br />
+    <h2>Check your email for your reset ID, and copy and paste the ID into the field below.</h2>
+
+    {% if enterID == True %}
+    <form method="post" class="was-validated center" action="/enterresetID" name="resetID" style="width:40vw">
+        <input type="hidden" name="id" value="{{ id }}" /><br>
+        <input type="hidden" name="userID" value="{{ userID }}" /><br>
+        <div class="form-group">
+            <label for="resetID">Reset ID:</label>
+            <input type="text" class="form-control" id="resetID" placeholder="Enter Reset ID:" name="resetID" required>
+            <div class="valid-feedback">Valid.</div>
+            <div class="invalid-feedback">Please fill out this field.</div>
+        </div>
+        <button type="submit" class="btn btn-primary">Go to Reset Password</button>
+    </form>
+
+    {% else %}
+    <h3>Sorry, you haven't requested a password reset yet! Please go back to the password reset screen and continute from there. As soon as you click away from the pages you are redirected to, your password reset ID will no longer be valid.</h3>
+    <a href="/resetpassword"><p>Click here to reset your password.</p></a>
+    {% endif %}
+
+    </div>
+{% endblock %}
